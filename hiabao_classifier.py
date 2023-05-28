@@ -46,11 +46,8 @@ class BinaryClassifier(nn.Module):
         x = self.relu3(self.fc1(x))
         x = self.sigmoid(self.fc2(x))
         return x
-path = '/Users/lanyiwei/data/image/97.jpeg'
-face = cv2.imread(path)
+# path = '/Users/lanyiwei/data/image/97.jpeg'
+# face = cv2.imread(path)
 # model = BinaryClassifier()
 # model.load_state_dict(torch.load('/Users/lanyiwei/data/ppt/model.pth'))
 # model.eval
-
-clas = classifier()
-clas(face)
