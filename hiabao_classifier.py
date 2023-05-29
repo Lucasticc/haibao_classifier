@@ -5,7 +5,9 @@ import torch.nn as nn
 class classifier():
     def __init__(self) -> None:
         self.model = BinaryClassifier()
-        self.model.load_state_dict(torch.load('/Users/lanyiwei/data/ppt/model.pth'))
+        path_mac ='/Users/lanyiwei/data/ppt/model.pth'
+        path_win = r'Z:\data\ppt_model\model.pth'
+        self.model.load_state_dict(torch.load(path_win))
         self.model.eval
 
     def upload(self,pic):

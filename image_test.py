@@ -23,8 +23,7 @@ img_cv = cv2.imread(path)
 # else:
 #     print('no')
 clf = classifier()
-result = clf.upload(img_cv)
+result = clf.upload(img_np)
 print(result)
-
 
 
