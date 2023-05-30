@@ -17,6 +17,8 @@ train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=128, shuffl
 
 # 定义模型、损失函数和优化器
 model = BinaryClassifier()
+path_win = r'Z:\data\ppt_model\model50-3.pth'
+# model.load_state_dict(torch.load(path_win))
 # criterion = nn.CrossEntropyLoss()
 criterion = nn.BCELoss()
 optimizer = optim.SGD(model.parameters(), lr=0.01)
@@ -41,11 +43,12 @@ for epoch in range(1,20):
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        running_loss += loss.item()
-        if i % 10 == 1:
-            print('[第%d轮, %5d批次] loss: %.3f' %
-                  (epoch, i, running_loss / 10))
-            running_loss = 0.0
+        # running_loss += loss.item()
+    print('第%d轮,损失函数%5f'%(epoch,loss.item()))
+        # if i % 30 == 1:
+        #     print('[第%d轮, %5d批次] loss: %.3f' %
+        #           (epoch, i, running_loss / 30))
+        #     running_loss = 0.0
 
 test_dataset = FaceDataset(test_dataset)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=128, shuffle=False)
@@ -60,11 +63,11 @@ with torch.no_grad():
         outputs = model(images)
         threshold = 0.5
         predicted = torch.where(outputs >= threshold, 1, 0)
-        right = right+(predicted == labels).sum()
+        right = (predicted == labels).sum().item()
         # right = right + (outputs.argmax(1)==labels).sum()  # 计数
-    acc = right.item()/total
+    acc = right/total
 print(acc)
 print('Accuracy of the network on the test images: %d %%' % (acc))
 path = '/Users/lanyiwei/data/ppt/model.pth'
-path = r'Z:\data\ppt_model\model.pth'
+path = r'Z:\data\ppt_model\model5-4.pth'
 torch.save(model.state_dict(), path)
