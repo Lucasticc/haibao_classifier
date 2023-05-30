@@ -4,8 +4,9 @@ import cv2
 from hiabao_classifier import classifier
 # 拿图片
 response = requests.get('https://cdn.pixabay.com/photo/2023/05/09/17/20/flowers-7982037_1280.jpg')
-response = requests.get('https://preview.qiantucdn.com/auto_machine/20230327/32b1ef5d-5851-4e10-912e-20f3626aa6b9.jpg!w1024_new_small_1')
-path = '/Users/lanyiwei/data/image/11.jpg'
+response = requests.get('https://picnew12.photophoto.cn/20180610/chuangyiweilaidanaokejihaibao-30551390_1.jpg')
+path = '/Users/lanyiwei/data/other/12.jpg'
+path = r'Z:\data\image_dp\image\261.jpg'
 image_data = response.content
 
 # 二进制赚np
@@ -23,7 +24,7 @@ img_cv = cv2.imread(path)
 # else:
 #     print('no')
 clf = classifier()
-result = clf.upload(img_np)
+result = clf.upload(img_cv)
 print(result)
 
 
