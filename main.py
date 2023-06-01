@@ -43,11 +43,14 @@ for epoch in range(1,20):
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        # running_loss += loss.item()
-    print('第%d轮,损失函数%5f'%(epoch,loss.item()))
-        # if i % 30 == 1:
-        #     print('[第%d轮, %5d批次] loss: %.3f' %
-        #           (epoch, i, running_loss / 30))
+        running_loss += loss.item()
+    large = len(train_loader)
+    lossp = running_loss/large
+    print('第%d轮,损失函数%5f'%(epoch,lossp))
+
+        # if i%(large-1) == 0 and i !=0:
+        #     lossp = running_loss/large
+        #     print('第%d轮,损失函数%5f'%(epoch,lossp))
         #     running_loss = 0.0
 
 test_dataset = FaceDataset(test_dataset)
