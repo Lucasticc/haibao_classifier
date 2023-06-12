@@ -3,20 +3,22 @@ import torch.nn as nn
 import torch.optim as optim
 from model import BinaryClassifier
 from dataloader import FaceDataset
+from net import Net
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载数据集
 train_dataset = '/Users/lanyiwei/data/ppt'
-train_dataset = r'Z:\data\image_dp'
+# train_dataset = r'Z:\data\image_dp'
 train_dataset = FaceDataset(train_dataset)
 test_dataset = '/Users/lanyiwei/data/ppt'
-test_dataset = r'Z:\data\val_dp'
+# test_dataset = r'Z:\data\val_dp'
 
 # 定义数据加载器
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=128, shuffle=True)
 
 # 定义模型、损失函数和优化器
 model = BinaryClassifier()
+# model = Net()
 path_win = r'Z:\data\ppt_model\model50-3.pth'
 # model.load_state_dict(torch.load(path_win))
 # criterion = nn.CrossEntropyLoss()
