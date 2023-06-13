@@ -7,11 +7,11 @@ from net import Net
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载数据集
-train_dataset = '/Users/lanyiwei/data/ppt'
-# train_dataset = r'Z:\data\image_dp'
+# train_dataset = '/Users/lanyiwei/data/ppt'
+train_dataset = r'Z:\data\image_dp'
 train_dataset = FaceDataset(train_dataset)
-test_dataset = '/Users/lanyiwei/data/ppt'
-# test_dataset = r'Z:\data\val_dp'
+# test_dataset = '/Users/lanyiwei/data/ppt'
+test_dataset = r'Z:\data\val_dp'
 
 # 定义数据加载器
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=128, shuffle=True)
@@ -28,7 +28,7 @@ optimizer = optim.SGD(model.parameters(), lr=0.01)
 # 训练模型
 model.train()
 model.to(device)
-for epoch in range(1,20):
+for epoch in range(1,50):
     running_loss = 0.0
     for i, data in enumerate(train_loader, 0):
         inputs, labels = data
@@ -73,6 +73,6 @@ with torch.no_grad():
     acc = right/total
 print(acc)
 print('Accuracy of the network on the test images: %d %%' % (acc))
-path = '/Users/lanyiwei/data/ppt/model.pth'
-path = r'Z:\data\ppt_model\model5-4.pth'
+# path = '/Users/lanyiwei/data/ppt/model.pth'
+path = r'Z:\data\ppt_model\model_zhu.pth'
 torch.save(model.state_dict(), path)
